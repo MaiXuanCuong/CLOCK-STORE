@@ -1,0 +1,377 @@
+<div class="header-area two">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-sm-6 col-lg-7">
+        <div class="left">
+          <ul>
+            <li>
+              <i class="flaticon-delivery-truck"></i>
+              <span>Giao hàng miễn phí</span>
+            </li>
+            <li>
+              <i class="flaticon-quality"></i>
+              <span>Đảm bảo giá tốt nhất</span>
+            </li>
+            <li>
+              <i class="flaticon-call-center"></i>
+              <span>24/7 Hỗ trợ khách hàng</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-5">
+        <div class="right">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="padding-top:4px; padding-bottom:4px" class="nav-top-area two">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-lg-2">
+        <div class="left">
+          <a href="">
+            <img src="assets/images/logo-shop.png" width="100" height="50" alt="Logo" />
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="middle">
+          <form>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Tìm kiếm từ khóa của bạn"
+              />
+              <button type="submit" class="btn">
+                <i class="bx bx-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="right">
+          <ul>
+            <li>
+              <button
+                type="button"
+                class="btn wishlist cart-popup-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo"
+                (click)="changeCart()"
+              >
+                <i class="bx bxs-cart" ></i>
+                <span *ngIf="listCart && listCart?.length ">{{ listCart?.length }}</span>
+
+
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="btn wishlist"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModalWishlist"
+                data-bs-whatever="@mdo"
+                (click)="changeCart()"
+              >
+                <i class="bx bx-heart" ></i>
+                <span *ngIf="listCart && listCartByLike?.length">{{ listCartByLike?.length }}</span>
+              </button>
+            </li>
+            <li *ngIf="check">
+              <a style="text-decoration: none" class="btn btn-warning" type="button"  data-bs-toggle="modal"
+              data-bs-target="#exampleModalChangePassword"
+              data-bs-whatever="@mdo">
+                <i
+                  class="flaticon-round-account-button-with-user-inside"
+                ></i>
+                {{ name }}
+              </a>
+            </li>
+            <li *ngIf="!check">
+              <a style="text-decoration: none" class="join" type="button" [routerLink]="['login']">
+                <i
+                  class="flaticon-round-account-button-with-user-inside"
+                ></i>
+                Đăng nhập
+              </a>
+            </li>
+            <li *ngIf="check">
+              <a style="text-decoration: none" class="join" type="button" (click)="logout()">
+                <i
+                  class="flaticon-round-account-button-with-user-inside"
+                ></i>
+                Đăng xuất
+              </a>
+            </li>
+          </ul>
+        </div >
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="navbar-area sticky-top">
+  <div class="mobile-nav">
+    <a href="" class="logo">
+      <img src="" alt="Logo" />
+    </a>
+  </div>
+
+  <div class="main-nav two">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-md navbar-light">
+        <div
+          class="collapse navbar-collapse mean-menu"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav">
+
+            <li class="nav-item">
+              <a [routerLink]="['home']"  class="nav-link dropdown-toggle"
+                >Trang Chủ <i class="bx"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['product-list']" class="nav-link dropdown-toggle"
+                >Sản Phẩm<i class="bx"></i
+              ></a>
+            </li>
+            <!-- <li class="nav-item">
+              <a href="#" class="nav-link dropdown-toggle"
+                >Cửa hàng <i class="bx bx-chevron-down"></i
+              ></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item">
+                  <a href="shop.html" class="nav-link">Cửa hàng</a>
+                </li>
+                <li class="nav-item">
+                  <a href="checkout.html" class="nav-link">Thủ tục thanh toán</a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="products-on-sale.html" class="nav-link"
+                    >Sản phẩm đang giảm giá</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="order-tracking.html" class="nav-link"
+                    >Theo dõi đơn hàng</a
+                  >
+                </li>
+
+              </ul>
+            </li> -->
+
+          </ul>
+          <div class="side-nav two">
+            <h4>
+              Giảm <span>50%</span> giá tất cả sản phẩm trong ngày khai trương cửa hàng từ ngày 8 tháng 11 đến ngày 10 tháng 11 năm 2022
+              <a [routerLink]="['product-list']">Xem các sản phẩm đang giảm giá</a>
+            </h4>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div
+class="modal fade modal-right popup-modal"
+id="exampleModal"
+tabindex="-1"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Giỏ hàng <span style="margin-right: 50px;" *ngIf="listCart && listCart.length">Số lượng: {{ listCart?.length }}</span></h2>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body" *ngFor="let cart of listCart">
+      <div class="cart-table">
+        <table class="table" >
+          <tbody>
+            <tr >
+              <th scope="row">
+                <img [src]="url+'storage/images/product/'+ cart.image" alt="Cart" />
+              </th>
+              <td>
+                <h3>{{ cart.name }}</h3>
+                <span class="rate">{{ cart.price | number }} VND</span>
+              </td>
+              <td>
+                <ul class="number">
+                  <li>
+                    <a onclick="this.parentNode.querySelector('input[type=number]').stepDown();"
+                          (click)="updateQuantity(cart.id, quantity.value)">
+                          <span class="minus">-</span>
+                      </a>
+                    <input #quantity name="quantity" min="1" max="{{ cart.quantity_product }}" style="width: 60px;" type="number" value="{{ cart.quantity }}" />
+                    <a onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                          (click)="updateQuantity(cart.id, quantity.value)">
+                          <span class="plus">+</span>
+                      </a>
+                  </li>
+
+                </ul>
+              </td>
+              <td>
+                <a class="remove-item" (click)="deleteCart(cart.id)"><i class="bx bx-x"></i></a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <div class="total-amount">
+          <h3>Tổng: <span>{{ cart.price * cart.quantity| number }} VND</span></h3>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+          <button [routerLink]="['/checkout']" class="btn common-btn btn-info" data-bs-dismiss="modal" aria-label="Close">Kiểm tra giỏ hàng</button>
+          <button routerLink='/listorder/{{ id_user }}' class="btn common-btn btn-warning" data-bs-dismiss="modal" aria-label="Close">Lịch sử đặt hàng</button>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div
+  class="modal fade modal-right popup-modal wishlist-modal"
+  id="exampleModalWishlist"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Yêu Thích <span style="margin-right: 50px;" *ngIf="listCartByLike && listCartByLike.length ">Số lượng: {{ listCartByLike?.length }}</span></h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body" *ngFor="let cartlike of listCartByLike">
+        <div class="cart-table">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <img [src]="url+'storage/images/product/'+ cartlike.image" alt="Cart" />
+                </th>
+                <td>
+                  <h3>{{ cartlike.name }}</h3>
+                  <span class="rate">{{ cartlike.price | number }} VND</span>
+                </td>
+                <td>
+                  <a class="common-btn" style="text-decoration: none" type="button" (click)="addToCart(cartlike.id)">
+                    Thêm vào giỏ
+                    <img src="assets/images/shape1.png" alt="Shape" />
+                    <img src="assets/images/shape2.png" alt="Shape" />
+                  </a>
+                </td>
+                <td>
+                  <a class="remove-item" (click)="deleteCartByLike(cartlike.id)"><i class="bx bx-x"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+class="modal fade modal-right popup-modal"
+id="exampleModalChangePassword"
+tabindex="-1"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Thay đổi mật khẩu</h2>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <form [formGroup]="changePassForm" (ngSubmit)="Submit()">
+    <div class="modal-body">
+      <div class="cart-table">
+        <table class="table" >
+          <tbody>
+            <input formControlName="old_password" type="password" id="password" class="form-control" name="old_password" placeholder="Mật khẩu cũ"><br>
+        <small class="label label-danger"
+        *ngIf="!changePassForm.controls['old_password']?.valid && (changePassForm.controls['old_password']?.dirty
+
+        ||changePassForm.controls['old_password']?.touched) && changePassForm.controls['old_password']?.errors?.['required']"
+            class="help-block text-danger"
+            >Hãy nhập mật khẩu cũ!</small
+          >
+          <small class="help-block text-danger" *ngIf="error">
+            Mật khẩu cũ không đúng!
+          </small>
+          <small
+            class="label label-danger"
+            *ngIf="!changePassForm.controls['old_password']?.valid && (changePassForm.controls['old_password']?.dirty
+        ||changePassForm.controls['old_password']?.touched) && changePassForm.controls['old_password']?.errors?.['minlength']"
+        class="help-block text-danger">Mật khẩu tối thiểu 6 ký tự!</small><br>
+        <input formControlName="new_password" type="password" id="password" class="form-control" name="new_password" placeholder="Mật khẩu mới"><br>
+        <small class="label label-danger"
+        *ngIf="!changePassForm.controls['new_password']?.valid && (changePassForm.controls['new_password']?.dirty
+
+        ||changePassForm.controls['new_password']?.touched) && changePassForm.controls['new_password']?.errors?.['required']"
+            class="help-block text-danger"
+            >Hãy nhập mật khẩu mới!</small
+          >
+          <small
+            class="label label-danger"
+            *ngIf="!changePassForm.controls['new_password']?.valid && (changePassForm.controls['new_password']?.dirty
+        ||changePassForm.controls['new_password']?.touched) && changePassForm.controls['new_password']?.errors?.['minlength']"
+        class="help-block text-danger">Mật khẩu tối thiểu 6 ký tự!</small><br>
+        <input formControlName="confirmPassword" type="password" id="password" class="form-control" name="confirmPassword" placeholder="Xác nhận mật khẩu mới"><br>
+        <small class="label label-danger"
+        *ngIf="!changePassForm.controls['confirmPassword']?.valid && (changePassForm.controls['confirmPassword']?.dirty
+
+        ||changePassForm.controls['confirmPassword']?.touched) && changePassForm.controls['confirmPassword']?.errors?.['required']"
+            class="help-block text-danger"
+            >Hãy nhập mật khẩu xác nhận!</small
+          >
+          <small
+            class="label label-danger"
+            *ngIf="!changePassForm.controls['password']?.valid && (changePassForm.controls['password']?.dirty
+        ||changePassForm.controls['password']?.touched) && changePassForm.controls['password']?.errors?.['minlength']"
+        class="help-block text-danger">Mật khẩu tối thiểu 6 ký tự!</small><br>
+        <small class="help-block text-danger" *ngIf="passwordMatchError">
+          Xác nhận mật khẩu không đúng!
+        </small>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+          <button type="submit" [disabled]="!changePassForm.valid"  class="btn common-btn btn-warning">Đổi mật khẩu</button>
+    </div>
+  </form>
+  </div>
+</div>
+</div>

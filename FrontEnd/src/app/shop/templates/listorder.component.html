@@ -1,0 +1,48 @@
+<br><br><br><br><br>
+<div class="container">
+    <div class="mb-3 text-center">
+        <h2>Lịch sử mua hàng</h2>
+    </div>
+    <div class="row" *ngFor="let order of order.orders">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                    </div>
+                    <table class="table table-borderless text-center">
+                        <tbody>
+                            <tr>
+                                <td style="width: 200px;">Ảnh</td>
+                                <td >Sản Phẩm</td>
+                                <td>Số lượng</td>
+                                <td>Giá</td>
+                                <td>Tổng phụ</td>
+                            </tr>
+                            <tr *ngFor="let orderDetail of order.order_details">
+                                <td>
+                                    <div class="d-flex mb-2">
+                                        <div class="flex-shrink-0">
+                                            <img style="margin-left: 40px;" [src]="url+'storage/images/product/'+orderDetail.products.image"
+                                                alt="" width="100px" height="80px" class="img-fluid">
+                                        </div>
+                                        </div>
+                                </td>
+                                <td>
+                                        <div class="flex-lg-grow-1 ms-3">
+                                            <h6 class="small mb-0">
+                                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Chi Tiết Đơn Hàng" routerLink='/product-detail/{{orderDetail.products.id}}' class="text-end">{{ orderDetail.products.name }}</a>
+                                            </h6>
+                                        </div>
+                                </td>
+                                <td>{{ orderDetail.quantity }}</td>
+                                <td>{{ orderDetail.price_at_time|number }}</td>
+                                <td>{{ orderDetail.price_at_time * orderDetail.quantity|number }}</td>
+                                <button class="btn common-btn btn-info" routerLink='/order-detail/{{ orderDetail.order_id  }}'>Xem chi tiết</button>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

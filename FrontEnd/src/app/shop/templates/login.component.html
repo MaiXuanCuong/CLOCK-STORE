@@ -1,0 +1,87 @@
+<div class="user-area ptb-100"><br>
+  <div class="container">
+  <div class="user-item">
+
+    <div class="form-group">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <input formControlName="email" type="email" id="email" class="form-control" name="email" placeholder="Tài khoản"><br>
+        <small class="label label-danger"
+        *ngIf="!loginForm.controls['email']?.valid && (loginForm.controls['email']?.dirty
+
+        ||loginForm.controls['email']?.touched) && loginForm.controls['email']?.errors?.['required']"
+            class="help-block text-danger"
+            >Email không được để trống!</small
+          >
+          <small
+            class="label label-danger"
+            *ngIf="!loginForm.controls['email']?.valid && (loginForm.controls['email']?.dirty
+        ||loginForm.controls['email']?.touched) && loginForm.controls['email']?.errors?.['email']"
+        class="help-block text-danger">Email không đúng định dạng!</small>
+        <input formControlName="password" type="password" id="password" class="form-control" name="password" placeholder="Mật khẩu"><br>
+        <small class="label label-danger"
+        *ngIf="!loginForm.controls['password']?.valid && (loginForm.controls['password']?.dirty
+
+        ||loginForm.controls['password']?.touched) && loginForm.controls['password']?.errors?.['required']"
+            class="help-block text-danger"
+            >Mật khẩu không được để trống!</small
+          >
+          <small
+            class="label label-danger"
+            *ngIf="!loginForm.controls['password']?.valid && (loginForm.controls['password']?.dirty
+        ||loginForm.controls['password']?.touched) && loginForm.controls['password']?.errors?.['minlength']"
+        class="help-block text-danger">Mật khẩu tối thiểu 6 ký tự!</small><br>
+        <small class="label label-danger"
+        *ngIf="error"
+        class="help-block text-danger">Tài Khoản hoặc Mật Khẩu Không Đúng</small><br>
+        <input type="submit" [disabled]="!loginForm.valid" class="btn common-btn btn-info" value="Đăng nhập">
+  <h4>Hoặc</h4>
+  <ul>
+  <li>
+  <a (click)="signInWithFB()">
+  <i class='bx bxl-facebook'></i>
+                Đăng Nhập Facebook
+              </a>
+            </li>
+            <h5>Bạn chưa có tài khoản ? <a [routerLink]="['/register']">Đăng ký</a></h5><br>
+            <li>
+              <!-- <a >
+                <i class="bx bxl-google"></i>
+  Đăng Nhập Google
+  </a> -->
+
+  <form [formGroup]="ChangePassForm" (ngSubmit)="Submit()" class="form-horizontal">
+    <button type="button" class="title collapsed btn-warning" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+        aria-expanded="false" aria-controls="collapseFour">Quên mật khẩu</button>
+    <section class="checkout-steps-form-content collapse" id="collapseFour"
+        aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="single-form form-default"><br>
+                    <input type="email" class="form-control" formControlName="email" placeholder="Nhập email nhận mật khẩu" >
+                    <small class="label label-danger"
+                    *ngIf="!ChangePassForm.controls['email']?.valid && (ChangePassForm.controls['email']?.dirty
+                    ||ChangePassForm.controls['email']?.touched) && ChangePassForm.controls['email']?.errors?.['required']"
+                    class="help-block text-danger">Email không được để trống!</small>
+                    <small class="label label-danger"
+                    *ngIf="!ChangePassForm.controls['email']?.valid && (ChangePassForm.controls['email']?.dirty
+                    ||ChangePassForm.controls['email']?.touched) && ChangePassForm.controls['email']?.errors?.['email']"
+                    class="help-block text-danger">Email không đúng định dạng!</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+              <div class="single-form form-default">
+                <br>
+                  <input type="submit" [disabled]="!ChangePassForm.valid" class="btn btn-info" value="Gửi yêu cầu">
+              </div>
+          </div>
+        </div>
+    </section>
+  </form>
+  </li>
+  </ul>
+</form>
+   
+  </div>
+  </div>
+  </div>
+</div>

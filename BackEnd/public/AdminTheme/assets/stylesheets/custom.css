@@ -1,0 +1,15 @@
+/* put your own styles to customize and override the theme */
+.btn-primary {
+	background-color: #d5a801;
+	border-color: #d5a801;
+}
+.btn-primary.focus, .btn-primary:focus, .btn-primary:hover {
+	background-color: #bd9604;
+	border-color: #bd9604;
+}
+.figure-img .img-link {
+	background-color: hsla(0,0%,100%,.5)  !important;
+}
+.export{
+    margin-left:10px;
+}

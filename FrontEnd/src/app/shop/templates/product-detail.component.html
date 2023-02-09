@@ -1,0 +1,119 @@
+<div class="page-title-area">
+  <div class="title-img">
+    <img src="assets/images/page-title2.jpg" alt="About" />
+    <img src="assets/images/shape16.png" alt="Shape" />
+    <img src="assets/images/shape17.png" alt="Shape" />
+    <img src="assets/images/shape18.png" alt="Shape" />
+  </div>
+</div>
+<div style="padding-top:0px;" class="product-details-area ptb-100">
+  <div class="container">
+    <div class="top">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <div class="outer">
+            <div class="row">
+              <div class="main_image"> <img
+                [src]="image1"
+                id="current" alt="#" height="450" width="600">
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="images">
+                  <img (click)="changeImage(product.image)" [src]="url+'storage/images/product/'+ product.image"
+                  width="100px">
+                    <ng-container *ngFor="let image of images; let i=index">
+                        <img (click)="changeImage(image.product_images)"  [src]="url+'storage/images/product/'+image.product_images"
+                          class="img" alt="#"  width="100px">
+                    </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:100px" class="col-lg-5">
+          <div class="top-content">
+            <h2> Đồng hồ {{product.name}} - {{product.type_gender}}</h2>
+            <ul class="reviews">
+              <li>
+                <i class="bx bxs-star checked"></i>
+              </li>
+              <li>
+                <i class="bx bxs-star checked"></i>
+              </li>
+              <li>
+                <i class="bx bxs-star checked"></i>
+              </li>
+              <li>
+                <i class="bx bxs-star checked"></i>
+              </li>
+              <li>
+                <i class="bx bxs-star"></i>
+              </li>
+              <li>
+                <span>(200 Đánh giá)</span>
+              </li>
+              <li>
+                <h3>{{product.price| number }} (VNĐ)</h3>
+              </li>
+            </ul>
+            <ul class="tag">
+              <li>Thương hiệu: <span>{{product.branName}}</span></li>
+              <li>Danh mục: <span>{{product.cateName}}</span></li>
+              <li>Số lượng hiện có: <span>{{product.quantity}} chiếc</span></li>
+              <li>Khuyến mãi: <span>Chưa có</span></li>
+              <li>Chi tiết:</li>
+              <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab"
+                [innerHTML]="product.description"></div>
+            </ul>
+            <ul class="cart">
+              <li>
+                <a class="common-btn" style="text-decoration: none" type="button" (click)="addToCart(product.id)">
+                  Thêm giỏ hàng
+                  <img src="assets/images/shape1.png" alt="Shape" />
+                  <img src="assets/images/shape2.png" alt="Shape" />
+                </a>
+              </li>
+              <li>
+                <a class="wishlist-btn common-btn" style="text-decoration: none" type="button" (click)="addToCartByLike(product.id)">
+                  <i class="bx bx-heart"></i>Yêu thích
+                  <img src="assets/images/shape1.png" alt="Shape" />
+                  <img src="assets/images/shape2.png" alt="Shape" />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="products-area pb-70">
+  <div class="container">
+    <div class="section-title">
+      <h2>Có thể bạn quan tâm</h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-lg-3"  *ngFor="let trending of trending_top" >
+        <div class="products-item">
+          <div class="top">
+            <a class="wishlist" style="text-decoration: none" type="button" (click)="addToCartByLike(trending.id)">
+              <i class="bx bx-heart"></i>
+            </a>
+            <img [src]="url+'storage/images/product/'+trending.image" alt="Products" />
+            <div class="inner">
+              <h3>
+                <a type="button" style="text-decoration: none"  (click)="change_product(trending.id)">{{trending.name}}</a>
+              </h3>
+              <span>{{trending.price | number}} (VNĐ)</span>
+            </div>
+          </div>
+          <div class="bottom">
+            <a class="cart-text" (click)="addToCart(trending.id)">Thêm giỏ vào hàng</a>
+            <i class="bx bx-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

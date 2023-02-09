@@ -1,0 +1,240 @@
+<div class="page-title-area">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="container">
+        <div class="title-content">
+          <h2>Thủ tục thanh toán</h2>
+          <ul>
+            <li>
+              <a [routerLink]="['/home']">Trang chủ</a>
+            </li>
+            <li>
+              <span>Thủ tục thanh toán</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="title-img">
+    <img src="assets/images/page-title1.jpg" alt="About" />
+    <img src="assets/images/shape16.png" alt="Shape" />
+    <img src="assets/images/shape17.png" alt="Shape" />
+    <img src="assets/images/shape18.png" alt="Shape" />
+  </div>
+</div>
+
+<div class="checkout-area pt-100 pb-70">
+  <div class="container">
+    <div class="section-title">
+      <h2>Chi tiết thanh toán</h2>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="checkout-billing">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nhập họ và tên"
+                formControlName="name_customer"
+              />
+              <small
+                class="label label-danger"
+                *ngIf="!form.controls['name_customer']?.valid && (form.controls['name_customer']?.dirty
+        ||form.controls['name_customer']?.touched) && form.controls['name_customer']?.errors?.['required']"
+                class="help-block text-danger"
+                >Tên không được để trống!</small
+              >
+            </div>
+            <div class="form-group">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Nhập số điện thoại"
+                formControlName="phone"
+              />
+              <small
+                class="label label-danger"
+                *ngIf="!form.controls['phone']?.valid && (form.controls['phone']?.dirty
+              ||form.controls['phone']?.touched) && form.controls['phone']?.errors?.['required']"
+                class="help-block text-danger"
+                >Số điện thoại không được để trống!</small>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="single-form form-default">
+                    <div class="select-items">
+                      <select
+                        name="province"
+                        class="form-control"
+                        formControlName="province_id"
+                        (change)="onSelectProvince($event)"
+                      >
+                        <option disabled selected value>
+                          -- Chọn tỉnh/thành phố --
+                        </option>
+                        <ng-container *ngFor="let province of listProvince">
+                          <option value="{{ province.id }}">
+                            {{ province.name }}
+                          </option>
+                        </ng-container>
+                      </select>
+                      <small
+                        class="label label-danger"
+                        *ngIf="!form.controls['province_id']?.valid && (form.controls['province_id']?.dirty
+              ||form.controls['province_id']?.touched) && form.controls['province_id']?.errors?.['required']"
+                        class="help-block text-danger"
+                        >Chọn tỉnh/thành phố!</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="single-form form-default">
+                    <div class="select-items">
+                      <select
+                        class="form-control"
+                        formControlName="district_id"
+                        (change)="onSelectDistrict($event)"
+                      >
+                        <option disabled selected value>
+                          -- Chọn quận/huyện --
+                        </option>
+                        <ng-container *ngIf="provinceSelected">
+                          <ng-container *ngFor="let district of listDistrict">
+                            <option value="{{ district.id }}">
+                              {{ district.name }}
+                            </option>
+                          </ng-container>
+                        </ng-container>
+                      </select>
+                      <small
+                        class="label label-danger"
+                        *ngIf="!form.controls['district_id']?.valid && (form.controls['district_id']?.dirty
+                                  ||form.controls['district_id']?.touched) && form.controls['district_id']?.errors?.['required']"
+                        class="help-block text-danger"
+                        >Chọn quận/huyện!</small
+                      >
+                    </div>
+                  </div>
+                  <br />
+                </div>
+                <div class="col-md-6">
+                  <div class="single-form form-default">
+                    <div class="select-items">
+                      <select class="form-control" formControlName="ward_id">
+                        <option disabled selected value>
+                          -- Chọn xã/phường --
+                        </option>
+                        <ng-container *ngIf="districtSelected">
+                          <ng-container *ngFor="let ward of listWard">
+                            <option value="{{ ward.id }}">
+                              {{ ward.name }}
+                            </option>
+                          </ng-container>
+                        </ng-container>
+                      </select>
+                      <small
+                        class="label label-danger"
+                        *ngIf="!form.controls['ward_id']?.valid && (form.controls['ward_id']?.dirty
+                                  ||form.controls['ward_id']?.touched) && form.controls['ward_id']?.errors?.['required']"
+                        class="help-block text-danger"
+                        >Chọn xã/phường!</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="single-form form-default">
+                    <div class="form-input form">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Địa chỉ nhà"
+                        formControlName="address"
+                      />
+                    </div>
+                    <small
+                      class="label label-danger"
+                      *ngIf="!form.controls['address']?.valid && (form.controls['address']?.dirty
+                                  ||form.controls['address']?.touched) && form.controls['address']?.errors?.['required']"
+                      class="help-block text-danger"
+                      >Nhập địa chỉ nhà!</small
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea
+                id="your-notes"
+                rows="4"
+                class="form-control"
+                placeholder="Ghi chú/Yêu cầu"
+                formControlName="note"
+              ></textarea>
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                [disabled]="!form.valid"
+                class="btn common-btn btn-info"
+              >
+                Đặt hàng
+                <img src="assets/images/shape1.png" alt="Shape" />
+                <img src="assets/images/shape2.png" alt="Shape" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="checkout-order" *ngIf="listCart">
+            <h3>Đơn hàng của bạn</h3>
+            <ul *ngFor="let cart of listCart">
+              <li>
+                <img
+                  [src]="url + 'storage/images/product/' + cart.image"
+                  alt="Checkout"
+                />
+              </li>
+              <li>
+                <h4>{{ cart.name }} x {{ cart.quantity }} Chiếc</h4>
+              </li>
+              <li>
+                <span>{{ cart.price * cart.quantity | number }} VNĐ</span>
+              </li>
+            </ul>
+            <div class="inner">
+              <h3>Phí vận chuyển: <span>25,000 VNĐ</span></h3>
+              <h4>
+                Tổng tiền: <span>{{ cartSubtotal + 25000 | number }} VNĐ</span>
+              </h4>
+            </div>
+          </div>
+          <div class="checkout-method">
+            <h3>Phương thức thanh toán</h3>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="exampleRadios"
+                id="exampleRadios2"
+                value="option2"
+                checked
+              />
+              <label class="form-check-label" for="exampleRadios2">
+                Thanh toán khi nhận hàng
+              </label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn common-btn btn-warning" (click)="checkCart()" >Cập nhật giỏ hàng</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

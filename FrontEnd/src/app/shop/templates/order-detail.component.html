@@ -1,0 +1,99 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="mb-3 text-center">
+        <h2>Chi tiết đặt hàng</h2>
+    </div>
+    <div class="d-flex justify-content-between align-items-center py-3">
+        <h5>Mã đặt hàng: {{ orderId }}</h5>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <span class="me-3">Ngày đặt: {{ order.created_at |date :'d/M/y, h:mm:ss a' }}</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <span class="me-3">Tên khách hàng: {{ order.name_customer }}</span>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Ảnh</td>
+                                <td>Sản Phẩm</td>
+                                <td>Số lượng</td>
+                                <td class="text-end">Giá</td>
+                                <td class="text-end">Tổng phụ</td>
+                            </tr>
+                            <tr *ngFor="let orderDetail of order.order_details">
+                                <td>
+                                    <div class="d-flex mb-2">
+                                        <div class="flex-shrink-0">
+                                            <img [src]="url+'storage/images/product/'+orderDetail.products.image"
+                                                alt="" width="65" class="img-fluid">
+                                        </div>
+                                        </div>
+                                </td>
+                                <td>
+                                        <div class="flex-lg-grow-1 ms-3">
+                                            <h6 class="small mb-0">
+                                                <a routerLink='/product-detail/{{orderDetail.products.id}}' class="text-end">{{ orderDetail.products.name }}</a>
+                                            </h6>
+                                        </div>
+                                 
+                                </td>
+                                <td>{{ orderDetail.quantity }}</td>
+                                <td class="text-end">{{ orderDetail.price_at_time|number }}</td>
+                                <td class="text-end">{{ orderDetail.price_at_time * orderDetail.quantity|number }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="fw-bold">
+                                <td colspan="4">Tổng tiền hàng</td>
+                                <td class="text-end">{{ totalPrice|number }} VNĐ</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                <td colspan="4">Phí vận chuyển</td>
+                                <td class="text-end">25,000 VNĐ</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h3 class="h6">Phương thức thanh toán</h3>
+                            <p>Thanh toán khi nhận hàng<br>
+                                Tổng thanh toán: {{ totalPrice + 25000| number }} <span class="badge bg-success rounded-pill">VNĐ</span></p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h3 class="h6">Địa chỉ thanh toán</h3>
+                                <div>
+                                    <strong><i>{{ order.address }}</i></strong>
+                                </div>
+                                <div>
+                                    <strong><i>{{ order.ward.name }}, {{ order.district.name }},{{ order.province.name }} </i></strong>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="h6">Ghi chú/yêu cầu</h3>
+                    <p>{{ order.note }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

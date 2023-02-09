@@ -1,0 +1,148 @@
+<style> 
+  input[type=text] {
+    width: 120px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 10px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 10px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  input[type=text]:focus {
+    width: 60%;
+  }
+  </style>
+<div
+  class="page-title-area"
+  style="background-image: url('assets/images/background-list.jpg')"
+>
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="container">
+      </div>
+    </div>
+  </div>
+  <div class="title-img">
+    <img src="assets/images/page-title1.jpg" alt="About" />
+  </div>
+</div>
+<div style="padding-top:50px ;" class="products-area ptb-100">
+  <div class="row">
+        <div class="col-lg-3">
+          <form action="#"  [formGroup]="serachForm">
+            <input style="margin-left:97px" type="text" formControlName="search" placeholder="Tìm kiếm...">
+            <button (click)="product_search($event)" class="btn btn-outline-danger" type="submit" ><i class="bx bx-search"></i></button>
+          </form>
+      </div>
+      <div class="col-lg-9">
+        <div class="row">
+          <a (click)="product_list()" style="width: 150px; height: 40px; margin-left: 9%;" class="btn btn-{{color_1}}">Tất Cả Sản Phẩm</a>
+          <a (click)="product_male('Nam')" style="width: 150px; height: 40px;margin-left: 20%;" class="btn btn-{{color_2}}">Đồng Hồ Nam</a>
+          <a (click)="product_male('Nữ')" style="float: right ; width: 150px; height: 40px; margin-left: 19%;" class="btn btn-{{color_3}}">Đồng Hồ Nữ</a>
+        </div><br>
+        <div style="margin-left: 90px" class="row">
+          <a class="btn btn-{{color_2t}}" type="button" style=" width: 120px;" (click)="product_by_price('2t')" type="button">Dưới 2 triệu</a>&nbsp;&nbsp;
+          <a class="btn btn-{{color_2t_5t}}" type="button" style=" width: 150px;" (click)="product_by_price('2t-5t')" type="button">Từ 2 - 5 triệu</a>&nbsp;&nbsp;
+          <a class="btn btn-{{color_5t_10t}}" type="button" style=" width: 150px;" (click)="product_by_price('5t-10t')" type="button">Từ 5 - 10 triệu</a>&nbsp;&nbsp;
+          <a class="btn btn-{{color_10t_20t}}" type="button" style=" width: 150px;" (click)="product_by_price('10t-20t')" type="button">Từ 10 - 20 triệu</a>&nbsp;&nbsp;
+          <a class="btn btn-{{color_20t_50t}}" type="button" style=" width: 150px;" (click)="product_by_price('20t-50t')" type="button">Từ 20 - 50 triệu</a>&nbsp;&nbsp;
+          <a class="btn btn-{{color_50t}}" type="button" style=" width: 140px;" (click)="product_by_price('50t')" type="button">Trên 50 triệu</a>
+        </div>
+      </div>
+  </div><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div >
+          <div>
+            <h3>Thương Hiệu</h3>
+            <div class="container">
+              <div *ngFor="let brand of brands" style="margin: 10px;"  class="col" style="width:130px; height: 35px;">
+                <a style=" width: 170px;" (click)="product_OfBrand(brand.id)" type="button">Thương hiệu {{brand.name}}</a>
+              </div>
+            </div>
+          </div>
+          <div >
+            <h3>Danh Mục</h3>
+            <div class="container">
+              <div *ngFor="let category of categories" style="margin: 10px;"  class="col" style="width:130px; height: 35px;">
+                <a style=" width: 170px;" (click)="product_OfCate(category.id)" type="button">{{category.name}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-lg-3" *ngFor="let product of products | paginate:{
+              itemsPerPage: tableSize, currentPage: page, totalItems: count
+            }; let i = index">
+              <div class="products-item">
+                <div class="top">
+                  <a class="wishlist" style="text-decoration: none" type="button" (click)="addToCartByLike(product.id)">
+
+                    <i class="bx bx-heart"></i>
+                  </a>
+                  <img [src]="url+'storage/images/product/'+product.image" [alt]="product.name" />
+                  <div class="inner">
+                    <h3>
+                      <a routerLink='/product-detail/{{product.id}}'>{{product.name}}</a>
+                    </h3>
+                    <span>{{product.price | currency }}(VND)</span>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <a class="cart-text" style="text-decoration: none" type="button" (click)="addToCart(product.id)">Thêm giỏ hàng</a>
+                  <i class="bx bx-plus"></i>
+                </div>
+              </div>
+            </div>
+
+            <pagination-controls style="margin-left:200px ;"
+            previousLabel="Trang sau"
+            nextLabel="Trang tiếp"
+            (pageChange)="ontableDataChange($event)"
+            >
+
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="products-area pb-70">
+  <div class="container">
+    <div class="row">
+      <div  *ngFor="let trending of trending_top" class="col-sm-6 col-lg-3">
+        <div class="products-item">
+          <div class="top">
+            <a class="wishlist" style="text-decoration: none" type="button" (click)="addToCartByLike(trending.id)">
+              <i class="bx bx-heart"></i>
+            </a>
+            <img [src]="url+'storage/images/product/'+trending.image" [alt]="trending.name"/>
+            <div class="inner">
+              <h3>
+                <a href="single-product.html">{{trending.name}}</a>
+              </h3>
+              <span>{{trending.price | currency }}(VND)</span>
+            </div>
+          </div>
+          <div class="bottom">
+            <a class="cart-text" style="text-decoration: none" type="button" (click)="addToCart(trending.id)">Thêm giỏ hàng</a>
+            <i class="bx bx-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

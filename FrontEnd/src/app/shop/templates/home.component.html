@@ -1,0 +1,288 @@
+<style>
+@import url('https://fonts.googleapis.com/css?family=Roboto:700');
+
+body {
+  margin:0px;
+  font-family:'Roboto';
+  text-align:center;
+}
+
+#container {
+  color:#999;
+  text-transform: uppercase;
+  font-size:36px;
+  font-weight:initial;
+  width:100%;
+  display:block;
+  text-align: center;
+}
+
+#flip {
+  height:50px;
+  overflow:hidden;
+}
+
+#flip > div > div {
+  color:#fff;
+  padding:4px 12px;
+  height:45px;
+  margin-bottom:45px;
+  display:inline-block;
+}
+
+#flip div:first-child {
+  animation: show 5s linear infinite;
+  
+}
+#flip div div {
+  color:#42c58a;
+}
+#flip div:first-child div {
+  color:#4ec7f3;
+}
+#flip div:last-child div {
+  color:#DC143C;
+}
+
+@keyframes show {
+  0% {margin-top:-270px;}
+  5% {margin-top:-180px;}
+  33% {margin-top:-180px;}
+  38% {margin-top:-90px;}
+  66% {margin-top:-90px;}
+  71% {margin-top:0px;}
+  99.99% {margin-top:0px;}
+  100% {margin-top:-270px;}
+}
+
+
+</style>
+<div class="sale-area">
+  <div class="container-fluid">
+    <div
+      class="page-title-area"
+      style="background-image: url('assets/images/background-list-1.jpg')"
+    ></div>
+
+  </div>
+
+  <div class="products-area two pb-100">
+  
+    <!-- <h2 class="text-center display-5">Sản phẩm bán chạy</h2> -->
+    <div id=container>
+      <div id=flip>
+        <div><div><i>Sản phẩm bán chạy</i></div></div>
+        <div><div><i>Sản phẩm hot</i></div></div>
+        <div><div><i>Sản phẩm được săn đón</i></div></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="sorting-slider owl-theme owl-carousel">
+        <div class="products-thumb">
+          <a href="#">
+            <img src="assets/images/products/shape1.png" alt="Shape" />
+            <img src="assets/images/products/shape2.png" alt="Shape" />
+            <i class="flaticon-square"></i>
+            <span>Tất cả</span>
+          </a>
+        </div>
+        <div class="products-thumb">
+          <a href="#">
+            <img src="assets/images/products/shape1.png" alt="Shape" />
+            <img src="assets/images/products/shape2.png" alt="Shape" />
+            <i class="flaticon-headphones"></i>
+            <span>Headphones</span>
+          </a>
+        </div>
+        <div class="products-thumb">
+          <a href="#">
+            <img src="assets/images/products/shape1.png" alt="Shape" />
+            <img src="assets/images/products/shape2.png" alt="Shape" />
+            <i class="flaticon-microphone"></i>
+            <span>Microphones</span>
+          </a>
+        </div>
+        <div class="products-thumb">
+          <a href="#">
+            <img src="assets/images/products/shape1.png" alt="Shape" />
+            <img src="assets/images/products/shape2.png" alt="Shape" />
+            <i class="flaticon-laptop"></i>
+            <span>Laptop</span>
+          </a>
+        </div>
+        <div class="products-thumb">
+          <a href="#">
+            <img src="assets/images/products/shape1.png" alt="Shape" />
+            <img src="assets/images/products/shape2.png" alt="Shape" />
+            <i class="flaticon-monitor"></i>
+            <span>Desktop</span>
+          </a>
+        </div>
+        <div class="products-thumb">
+          <a href="#">
+            <img src="assets/images/products/shape1.png" alt="Shape" />
+            <img src="assets/images/products/shape2.png" alt="Shape" />
+            <i class="flaticon-camera"></i>
+            <span>Camera</span>
+          </a>
+        </div>
+        <div class="products-thumb">
+          <a href="#">
+            <img src="assets/images/products/shape1.png" alt="Shape" />
+            <img src="assets/images/products/shape2.png" alt="Shape" />
+            <i class="flaticon-smartwatch"></i>
+            <span>Smart Watch</span>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-lg-3" *ngFor="let product of trending_top">
+          <div class="products-item">
+            <div class="top">
+              <a class="wishlist" style="text-decoration: none" type="button"  (click)="addToCartByLike(product.id)">
+                <i class="bx bx-heart"></i>
+              </a>
+              <img
+                [src]="url + 'storage/images/product/' + product.image"
+                [alt]="product.name"
+              />
+              <div class="inner">
+                <h3>
+                  <a routerLink="/product-detail/{{ product.id }}">{{
+                    product.name
+                  }}</a>
+                </h3>
+                <span>{{ product.price | number }}(VND)</span>
+              </div>
+            </div>
+            <div class="bottom">
+              <a class="cart-text" style="text-decoration: none" type="button" (click)="addToCart(product.id)">Thêm vào giỏ hàng</a>
+              <i class="bx bx-plus"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <a class="common-btn two" routerLink="/product-list">
+          Xem thêm sản phẩm
+          <img src="assets/images/shape1.png" alt="Shape" />
+          <img src="assets/images/shape2.png" alt="Shape" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="buy-area two ptb-100">
+    <div class="buy-shape">
+      <img src="assets/images/shape6.png" alt="Shape" />
+      <img src="assets/images/shape7.png" alt="Shape" />
+    </div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="buy-content">
+            <h2>Mua đồng hồ tốt nhất đang được giảm giá</h2>
+            <p>Jacques Lemans Limited</p>
+            <ul>
+              <li>19,600,000 VNĐ</li>
+              <li>
+                <del>22,500,000 VNĐ</del>
+              </li>
+            </ul>
+            <a class="common-btn two" [routerLink]="['/product-list']">
+              Mua sắm ngay bây giờ
+              <img src="assets/images/.png" alt="Shape" />
+              <img src="assets/images/shape2.png" alt="Shape" />
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="buy-img">
+            <img src="assets/images/seiko.jpg" alt="Buy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="brand-area pb-70">
+    <div class="container">
+      <div class="section-title">
+        <h2>Thương hiệu đáng tin cậy của chúng tôi</h2>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-4 col-lg-3">
+          <div class="brand-item">
+            <a href="#">
+              <img src="assets/images/brand/logo-Tissot.png" alt="Brand" />
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-4 col-lg-3">
+          <div class="brand-item">
+            <a href="#">
+              <img
+                src="assets/images/brand/logo-JaegerLecoultre.png"
+                alt="Brand"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-4 col-lg-3">
+          <div class="brand-item">
+            <a href="#">
+              <img src="assets/images/brand/logo-Omega.png" alt="Brand" />
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-4 col-lg-3">
+          <div class="brand-item">
+            <a href="#">
+              <img
+                src="assets/images/brand/logo-PatekPhilippe.png"
+                alt="Brand"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-4 col-lg-3">
+          <div class="brand-item">
+            <a href="#">
+              <img src="assets/images/brand/logo-TAG-Heuer.png" alt="Brand" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="support-area pt-100 pb-70">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-lg-4">
+          <div class="support-item two">
+            <i class="flaticon-free-delivery"></i>
+            <h3>Miễn phí vận chuyển</h3>
+            <p>Giao hàng miễn phí toàn quốc</p>
+            <img src="assets/images/support-shape1.png" alt="Shape" />
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="support-item three">
+            <i class="flaticon-call-center"></i>
+            <h3>24/7 Hỗ trợ trực tuyến</h3>
+            <p>Chăm sóc khách hàng trực tuyến</p>
+            <img src="assets/images/support-shape1.png" alt="Shape" />
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="support-item four">
+            <i class="flaticon-giftbox"></i>
+            <h3>Phiếu tặng quà</h3>
+            <p>Phiếu giảm giá khi mua hàng</p>
+            <img src="assets/images/support-shape1.png" alt="Shape" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
